@@ -20,7 +20,7 @@ The creation of cinematic-quality animal effects necessitates the precise modeli
 
 ## 🔥 News:
 
-- [2025.10.16] Paper and local demo code released.
+- [2026.4.04] Paper and local demo code released.
 
 
 ## 🎥 Preview
