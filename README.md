@@ -7,11 +7,10 @@
     <!-- <a href='https://colab.research.google.com/drive/1LtnxgBU7k4gyymOWuonpOxjatdJ7AI8z?usp=sharing'><img src='https://img.shields.io/badge/Colab_Demo-Director3D-yellow?logo=googlecolab' alt='Project Page'></a> -->
 </p>
 
-<p align="center">
-  <video width="100%" autoplay loop muted playsinline>
-    <source src="https://github.com/user-attachments/assets/07bc481c-2eda-4c0d-8618-9ab2a0f9a533" type="video/mp4">
-  </video>
-</p>
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/07bc481c-2eda-4c0d-8618-9ab2a0f9a533" width="100%" autoplay loop muted playsinline></video>
+</div>
+
 
 
 **TL;DR:** MoZoo synthesizes high-fidelity animal dynamics from coarse meshes using Role-Aware RoPE and Asymmetric Decoupled Attention, achieving superior fur and muscle simulation across diverse species.
