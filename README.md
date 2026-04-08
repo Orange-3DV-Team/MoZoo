@@ -9,8 +9,7 @@
 
 <p align="center">
   <video width="100%" autoplay loop muted playsinline>
-    <source src="asset/demo.mp4" type="video/mp4">
-    Your browser does not support the video tag.
+    <source src="https://github.com/user-attachments/assets/07bc481c-2eda-4c0d-8618-9ab2a0f9a533" type="video/mp4">
   </video>
 </p>
 
@@ -46,3 +45,5 @@ Please leave us a star 🌟 and cite our repo if you find our work helpful.
 }
 
 ```
+
+
