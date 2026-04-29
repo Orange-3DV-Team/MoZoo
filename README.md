@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href=""><img src='https://img.shields.io/badge/arXiv-MoZoo-red?logo=arxiv' alt='Paper PDF'></a>
-    <a href='https://dongxialiu15.github.io/MoZoo/'><img src='https://img.shields.io/badge/Project_Page-MoZoo-green' alt='Project Page'></a>
+    <a href='https://orange-3dv-team.github.io/MoZoo/'><img src='https://img.shields.io/badge/Project_Page-MoZoo-green' alt='Project Page'></a>
     <a href=''><img src='https://img.shields.io/badge/Huggingface-Online_Demo-yellow' alt='Online Demo'></a>
     <!-- <a href='https://colab.research.google.com/drive/1LtnxgBU7k4gyymOWuonpOxjatdJ7AI8z?usp=sharing'><img src='https://img.shields.io/badge/Colab_Demo-Director3D-yellow?logo=googlecolab' alt='Project Page'></a> -->
 </p>
