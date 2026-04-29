@@ -24,11 +24,131 @@
     <!-- Include Lucide icons -->
     <script src="https://unpkg.com/lucide@0.329.0"></script>
     <style>
+        :root {
+            --bg-base: #fafafa;
+            --bg-surface: #ffffff;
+            --bg-surface-alt: #f8fafc;   /* slate-50 */
+            --bg-surface-2: #f1f5f9;     /* slate-100 */
+            --bg-surface-3: #e2e8f0;     /* slate-200 */
+            --bg-inverse: #000000;
+            --text-base: #333333;
+            --text-strong: #1e293b;      /* slate-800 */
+            --text-muted: #475569;       /* slate-600 */
+            --text-soft: #64748b;        /* slate-500 */
+            --text-faint: #94a3b8;       /* slate-400 */
+            --border-soft: #e2e8f0;
+            --border-softer: #f1f5f9;
+            --scroll-track: #f1f1f1;
+            --scroll-thumb: #cbd5e1;
+            --scroll-thumb-hover: #94a3b8;
+        }
+
+        html.dark {
+            --bg-base: #0b0d12;
+            --bg-surface: #161a22;
+            --bg-surface-alt: #1a1f2a;
+            --bg-surface-2: #20262f;
+            --bg-surface-3: #2a313c;
+            --bg-inverse: #000000;
+            --text-base: #d8dde6;
+            --text-strong: #f1f5f9;
+            --text-muted: #cbd5e1;
+            --text-soft: #94a3b8;
+            --text-faint: #64748b;
+            --border-soft: #2a313c;
+            --border-softer: #20262f;
+            --scroll-track: #161a22;
+            --scroll-thumb: #3a4150;
+            --scroll-thumb-hover: #4b5365;
+            color-scheme: dark;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #fafafa;
-            color: #333;
+            background-color: var(--bg-base);   /* was: #fafafa */
+            color: var(--text-base);            /* was: #333 */
+            transition: background-color .25s ease, color .25s ease;
         }
+        
+        html.dark :where(.bg-white)      { background-color: var(--bg-surface) !important; }
+        html.dark :where(.bg-white\/80)  { background-color: rgba(22,26,34,.8) !important; }
+        html.dark :where(.bg-white\/10)  { background-color: rgba(255,255,255,.06) !important; }
+        html.dark :where(.bg-slate-50)   { background-color: var(--bg-surface-alt) !important; }
+        html.dark :where(.bg-slate-50\/50){ background-color: rgba(26,31,42,.5) !important; }
+        html.dark :where(.bg-slate-100)  { background-color: var(--bg-surface-2) !important; }
+        html.dark :where(.bg-slate-200)  { background-color: var(--bg-surface-3) !important; }
+        html.dark :where(.bg-gray-200)   { background-color: var(--bg-surface-3) !important; }
+        html.dark :where(.bg-gray-300)   { background-color: #3a4150 !important; }
+
+        
+        html.dark :where(.text-slate-800) { color: var(--text-strong) !important; }
+        html.dark :where(.text-slate-700) { color: var(--text-muted) !important; }
+        html.dark :where(.text-slate-600) { color: var(--text-muted) !important; }
+        html.dark :where(.text-slate-500) { color: var(--text-soft) !important; }
+        html.dark :where(.text-slate-400) { color: var(--text-faint) !important; }
+        html.dark :where(.text-gray-800)  { color: var(--text-strong) !important; }
+        html.dark :where(.text-gray-600)  { color: var(--text-muted) !important; }
+        html.dark :where(.text-gray-500)  { color: var(--text-soft) !important; }
+
+        
+        html.dark :where(.border-slate-100) { border-color: var(--border-softer) !important; }
+        html.dark :where(.border-slate-200) { border-color: var(--border-soft)   !important; }
+        html.dark :where(.border-white)     { border-color: var(--border-soft)   !important; }
+        html.dark :where(.border-indigo-100){ border-color: rgba(99,102,241,.25) !important; }
+
+        html.dark :where(.from-slate-50) { --tw-gradient-from: transparent !important;
+                                        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent) !important; }
+
+        html.dark :where(.hover\:text-slate-700:hover) { color: #e2e8f0 !important; }
+
+        html.dark :where(.shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl, .shadow-inner) {
+            --tw-shadow-color: rgba(0,0,0,.6);
+            box-shadow: 0 4px 14px rgba(0,0,0,.45);
+        }
+
+        html.dark img:not([data-keep-bright]) { filter: brightness(.9) contrast(1.02); }
+
+        .scroll-container::-webkit-scrollbar { height: 10px; }
+        .scroll-container::-webkit-scrollbar-track { background: var(--scroll-track); border-radius: 8px; }
+        .scroll-container::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 8px; }
+        .scroll-container::-webkit-scrollbar-thumb:hover { background: var(--scroll-thumb-hover); }
+
+        #theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+            /* 由原来的固定宽高 42x42 改为自适应胶囊 */
+            height: 42px;
+            padding: 0 14px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;                       /* 图标和文字之间的间距 */
+            background: var(--bg-surface);
+            color: var(--text-strong);
+            border: 1px solid var(--border-soft);
+            box-shadow: 0 4px 12px rgba(0,0,0,.08);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .02em;
+            transition: transform .2s ease, background-color .25s ease, color .25s ease;
+        }
+        #theme-toggle:hover { transform: translateY(-1px) scale(1.05); }
+
+        #theme-toggle .icon-sun  { display: block; }
+        #theme-toggle .icon-moon { display: none; }
+        html.dark #theme-toggle .icon-sun  { display: none; }
+        html.dark #theme-toggle .icon-moon { display: block; }
+
+        #theme-toggle .label-light { display: inline; }
+        #theme-toggle .label-dark  { display: none; }
+        html.dark #theme-toggle .label-light { display: none; }
+        html.dark #theme-toggle .label-dark  { display: inline; }
+
+
 
         .viewer-container {
             cursor: grab;
@@ -112,9 +232,27 @@
         }
 
     </style>
+    <script>
+        (function () {
+            try {
+                var stored = localStorage.getItem('mozoo-theme');
+                var useDark = stored ? stored === 'dark' : true;
+                if (useDark) document.documentElement.classList.add('dark');
+            } catch (e) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+
 </head>
 
 <body class="antialiased">
+<button id="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
+    <i data-lucide="sun"  class="icon-sun  w-4 h-4"></i>
+    <i data-lucide="moon" class="icon-moon w-4 h-4"></i>
+    <span class="label-light">Light</span>
+    <span class="label-dark">Dark</span>
+</button>
 
    <!-- Header / Title Section (OmniWeaving Style with Your Author Layout) -->
 <header class="max-w-7xl mx-auto px-4 pt-20 pb-12 text-center">
@@ -170,7 +308,7 @@
         <a href="#" class="flex items-center gap-2 bg-[#5c6df0] hover:bg-[#4a5cd8] text-white px-8 py-2.5 rounded-full font-semibold shadow-md shadow-indigo-100 transition-all duration-300">
             <i data-lucide="file-text" class="w-5 h-5"></i> Paper
         </a>
-        <a href="https://github.com/Orange-3DV-Team/MoZoo" class="flex items-center gap-2 bg-[#5c6df0] hover:bg-[#4a5cd8] text-white px-8 py-2.5 rounded-full font-semibold shadow-md shadow-indigo-100 transition-all duration-300">
+        <a href="https://github.com/Orange-3DV-Team/MoZoo"  target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-[#5c6df0] hover:bg-[#4a5cd8] text-white px-8 py-2.5 rounded-full font-semibold shadow-md shadow-indigo-100 transition-all duration-300">
             <i data-lucide="github" class="w-5 h-5"></i> Code
         </a>
         <a href="#" class="flex items-center gap-2 bg-[#5c6df0] hover:bg-[#4a5cd8] text-white px-8 py-2.5 rounded-full font-semibold shadow-md shadow-indigo-100 transition-all duration-300">
@@ -1644,8 +1782,37 @@
             return [...new Set(urls)];
         }
 
+        function initThemeToggle() {
+            const btn = document.getElementById('theme-toggle');
+            if (!btn) return;
+
+            const applyTheme = (mode) => {
+                document.documentElement.classList.toggle('dark', mode === 'dark');
+                try { localStorage.setItem('mozoo-theme', mode); } catch (e) {}
+                if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                    window.lucide.createIcons();
+                }
+            };
+
+            btn.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.contains('dark');
+                applyTheme(isDark ? 'light' : 'dark');
+            });
+
+            // if (window.matchMedia) {
+            //     const mql = window.matchMedia('(prefers-color-scheme: dark)');
+            //     mql.addEventListener && mql.addEventListener('change', (e) => {
+            //         if (!localStorage.getItem('mozoo-theme')) {
+            //             applyTheme(e.matches ? 'dark' : 'light');
+            //         }
+            //     });
+            // }
+        }
+
+
         document.addEventListener('DOMContentLoaded', function () {
             // Initialize everything immediately — don't wait
+            initThemeToggle();
             initViewer();
             initGallery();
             initTeaser();
