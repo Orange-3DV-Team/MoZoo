@@ -36,11 +36,14 @@ If you're interested in this project, please give us a Star ⭐ to receive timel
 
 Please leave us a star 🌟 and cite our repo if you find our work helpful.
 ```
-@misc{liu2024mozoo,
-  title={MoZoo: Towards Unleashing Video Diffusion Power in Animal Fur and Muscle Simulation},
-  author={Dongxia Liu and Jie Ma and Xiaochen Yang and Jiancheng Zhang and Bin Xia and Zhehan Kan and Nisha Huang and Jun Liang and Wenming Yang and Jing Li},
-  year={2026},
-  howpublished={Unpublished manuscript}
+@misc{liu2026mozoounleashingvideodiffusionpower,
+      title={MoZoo:Unleashing Video Diffusion power in animal fur and muscle simulation}, 
+      author={Dongxia Liu and Jie Ma and Xiaochen Yang and Jiancheng Zhang and Bin Xia and Zhehan Kan and Nisha Huang and Jun Liang and Wenming Yang and Jin Li},
+      year={2026},
+      eprint={2605.13857},
+      archivePrefix={arXiv},
+      primaryClass={cs.GR},
+      url={https://arxiv.org/abs/2605.13857}, 
 }
 
 ```
